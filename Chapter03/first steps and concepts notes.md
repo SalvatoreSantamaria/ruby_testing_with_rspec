@@ -29,3 +29,13 @@ describe '#full_name' do #for instance methods use this syntax
       car.make = 'Test' #Set value
       expect(car.make).to eq('Test') #test value
     end
+
+### Format with Documentation
+add -f d to command for format documenation 
+example: rspec spec/car_spec.rb -f d
+
+### Pending Tests
+Either omit the do end block or use pending inside the block
+
+### Skipping
+Use xdescribe or xit or skip inside the block

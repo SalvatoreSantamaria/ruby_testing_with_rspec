@@ -29,7 +29,7 @@ describe 'Car' do
     
   end
   
-  describe '.colors' do
+  describe '.colors' do #for class methods use this sytax
 
     it "returns an array of color names" do
       c = ['blue', 'black', 'red', 'green']
@@ -38,7 +38,7 @@ describe 'Car' do
 
   end
   
-  describe '#full_name' do
+  describe '#full_name' do #for instance methods use this syntax
     
     it "returns a string in the expected format" do
       @honda = Car.new(:make => 'Honda', :year => 2004, :color => 'blue')
