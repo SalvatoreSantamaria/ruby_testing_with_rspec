@@ -35,17 +35,29 @@ describe 'NumberHelper' do
     
     context 'using custom options' do
       
-      it 'allows changing the :unit'
+      it 'allows changing the :unit' do 
+        expect(number_to_currency(2000, :unit => '£')).to eq('£2,000.00')
+      end
 
-      it 'allows changing the :precision'
+      it 'allows changing the :precision' do  
+        expect(number_to_currency(2000, :precision => 1)).to eq('$2,000.0')
+      end
       
-      it 'omits the separator if :precision is 0'
+      it 'omits the separator if :precision is 0' do 
+        expect(number_to_currency(1000, :precision => 0)).to eq('$1,000')
+      end
       
-      it 'allows changing the :delimiter'
+      it 'allows changing the :delimiter' do 
+        expect(number_to_currency(1000, :delimiter => '_')).to eq('$1_000.00')
+      end
       
-      it 'allows changing the :separator'
+      it 'allows changing the :separator' do 
+        expect(number_to_currency(1000, :separator => ':')).to eq('$1,000:00')
+      end
             
-      it 'correctly formats using multiple options'
+      it 'correctly formats using multiple options' do
+        expect(number_to_currency(1000, :precision => 0, :delimiter => '_')).to eq('$1_000')
+      end
       
     end
     
