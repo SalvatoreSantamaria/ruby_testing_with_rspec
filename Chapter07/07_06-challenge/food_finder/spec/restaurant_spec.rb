@@ -7,11 +7,20 @@ describe Restaurant do
   
   describe 'attributes' do
   
-    it "allow reading and writing for :name"
+    it "allow reading and writing for :name" do 
+      subject.name = 'new_name'
+      expect(subject.name).to eq('new_name')
+    end
 
-    it "allow reading and writing for :cuisine"
+    it "allow reading and writing for :cuisine" do 
+      subject.cuisine = 'italian'
+      expect(subject.name).to eq('italian')
+    end
 
-    it "allow reading and writing for :price"
+    it "allow reading and writing for :price" do
+      subject.price = '456'
+      expect(subject.price).to eq('456')
+    end
     
   end
   
