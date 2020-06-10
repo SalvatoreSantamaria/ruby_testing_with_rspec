@@ -19,3 +19,8 @@ expect(x).to be == 1 #same thing as above
 
 Truthiness Matchers
 expect(1 < 2).to be(true)
+expect('some string').to be_truthy #or be_falsy
+
+Numeric Comparison Matchers
+expect(100).to eq(100)
+expect(100).to be == 100
