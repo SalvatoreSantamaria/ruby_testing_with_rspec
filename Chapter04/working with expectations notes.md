@@ -24,3 +24,19 @@ expect('some string').to be_truthy #or be_falsy
 Numeric Comparison Matchers
 expect(100).to eq(100)
 expect(100).to be == 100
+
+Collection Matchers - Arrays, Hashes, Strings
+arr = [1,2,3]
+expect(arr).to match_array([3,2,1]) #in any order
+expect(arr).to contain_exactly(3,2,1)
+
+hash = {:city => 'Dallas', :state => 'TX'}
+expect(hash).to include(:city) 
+expect(hash).to include(:city => 'Dallas')
+
+Other Matchers - see 04_07/spec/expectation_matchers_spec.rb
+the Regular Expression matcher, 
+the Object Type Matchers, 
+Respond To Matcher, 
+Attribute Matcher, 
+and Satisfy Matcher.
