@@ -15,4 +15,7 @@ and each one allows us to different kinds of things
 
 Equivalence
 expect(x).to eq(1) #most common 
-expect(x).to be == 1 #same as above
+expect(x).to be == 1 #same thing as above
+
+Truthiness Matchers
+expect(1 < 2).to be(true)
