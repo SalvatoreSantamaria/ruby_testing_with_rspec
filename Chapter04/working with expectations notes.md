@@ -53,7 +53,7 @@ where visible is a function below....
 visible?(x) do ... end
 .to be_visible
 
-###### Observation Matchers
+###### Observation Matchers - see Chapter04/04_09/car_project
 Uses a block instead of an argument
 expect {}.to()
 
@@ -68,4 +68,13 @@ expect do
 end.to change(bob, :full_name).from('Bob Smith').to('Robert Smith')
 
 ###### Observe Output
+Not really useful for Ruby on Rails
 expect {}.to output.to_stdout
+
+###### Complex Expectations
+Complex Expectations uses and, or
+.and &
+.or | 
+
+###### Composing Matcher - see Chapter04/04_10-final/car_project
+matchers that accept other matchers
