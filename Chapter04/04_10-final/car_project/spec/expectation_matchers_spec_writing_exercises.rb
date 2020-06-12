@@ -8,7 +8,10 @@ describe 'Expectation Matchers' do
       b = "2 cats"
       expect(a).to eq(b)
       expect(a).to be == b      # synonym for #eq
-    
+      one = 1
+      two = 2
+      expect(1).not_to be == 2
+
       c = 17
       d = 17.0
       expect(c).to eq(d)        # different types, but "close enough"
@@ -18,6 +21,9 @@ describe 'Expectation Matchers' do
       a = "2 cats"
       b = "2 cats"
       expect(a).to eql(b)       # just a little stricter
+      one = 1
+      won = 1
+      expect(one).to be == (won)
 
       c = 17
       d = 17.0
@@ -32,6 +38,13 @@ describe 'Expectation Matchers' do
       c = b
       expect(b).to equal(c)     # same object
       expect(b).to be(c)        # synonym for #equal
+
+      one = 1
+      another = '1'
+      expect(one).not_to equal(another)
+
+      one = another
+      expect(one).to be (another)
     end
     
   end
@@ -41,6 +54,7 @@ describe 'Expectation Matchers' do
     it 'will match true/false' do
       expect(1 < 2).to be(true)       # do not use 'be_true'
       expect(1 > 2).to be(false)      # do not use 'be_false'
+      expect(1 == 1).to be(true)
 
       expect('foo').not_to be(true)   # the string is not exactly true
       expect(nil).not_to be(false)    # nil is not exactly false
@@ -88,15 +102,21 @@ describe 'Expectation Matchers' do
     
     it 'will match arrays' do
       array = [1,2,3]
+      array2 = ['a', 'b', 'c']
       
       expect(array).to include(3)
       expect(array).to include(1,3)
-
+      expect(array2).to include('a')
+      expect(array2).not_to include(1)
+#stopped here
       expect(array).to start_with(1)
       expect(array).to end_with(3)
+      expect(array2).not_to end_with(1)
+      expect(array2).to start_with('a')
       
       expect(array).to match_array([3,2,1])
       expect(array).not_to match_array([1,2])
+      expect(array2).to match_array(['b', 'a', 'c'])
 
       expect(array).to contain_exactly(3,2,1)   # similar to match_array
       expect(array).not_to contain_exactly(1,2) # but use individual args
@@ -104,9 +124,11 @@ describe 'Expectation Matchers' do
 
     it 'will match strings' do
       string = 'some string'
+      string2 = 'abcde'
       
       expect(string).to include('ring')
       expect(string).to include('so', 'ring')
+      expect(string2).to include('bc')
       
       expect(string).to start_with('so')
       expect(string).to end_with('ring')
@@ -114,12 +136,15 @@ describe 'Expectation Matchers' do
     
     it 'will match hashes' do
       hash = {:a => 1, :b => 2, :c => 3}
+      hash2 = {:x => 10, :y => 20, :z => 30}
       
       expect(hash).to include(:a)
       expect(hash).to include(:a => 1)
+      expect(hash2).to include(:z => 30)
       
       expect(hash).to include(:a => 1, :c => 3)
       expect(hash).to include({:a => 1, :c => 3})
+      expect(hash2).to include(:y => 20, :z => 30)
       
       expect(hash).not_to include({'a' => 1, 'c' => 3})
     end
@@ -194,6 +219,7 @@ describe 'Expectation Matchers' do
       expect(1).to be_nonzero               # 1.nonzero?
       expect(1).to be_odd                   # 1.odd?
       expect(2).to be_even                  # 1.even?
+      expect(1000).to be_integer     
       
       # be_nil is actually an example of this too
       
@@ -203,8 +229,15 @@ describe 'Expectation Matchers' do
       end
       product = Product.new
 
+      class Test 
+        def stuff?; true; end
+      end
+      test2 = Test.new
+
       expect(product).to be_visible         # product.visible?
       expect(product.visible?).to be true   # exactly the same as this
+      expect(test2).to be_stuff
+      expect(test2.stuff?).to be true
     end
 
     it 'will match have_* to custom methods like has_*?' do
@@ -308,6 +341,9 @@ describe 'Expectation Matchers' do
       
       array = ['hello', 'goodbye'].shuffle
       expect(array.first).to eq("hello") | eq("goodbye")
+
+      expect([5,6,7,8]).to start_with(5) & include(6)
+
     end
     
   end
