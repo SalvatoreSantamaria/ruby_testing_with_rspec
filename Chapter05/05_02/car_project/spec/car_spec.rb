@@ -31,19 +31,24 @@ describe 'Car' do
       expect(@car.wheels).to eq(4)
     end
     
-    it "allows writing for :doors" do
+    xit "allows writing for :doors" do
       expect(@car.doors).to eq()
     end
     
   end
   
   describe '.colors' do
-
     it "returns an array of color names" do
       c = ['blue', 'black', 'red', 'green']
       expect(Car.colors).to match_array(c)
     end
+  end
 
+  describe '.windows' do
+    it 'returns an array of window types' do
+      w = ['manual', 'electric', 'tinted']
+      expect(Car.windows).to match_array(w)
+    end
   end
   
   describe '#full_name' do
