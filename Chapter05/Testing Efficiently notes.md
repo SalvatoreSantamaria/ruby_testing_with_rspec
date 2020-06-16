@@ -47,3 +47,16 @@ subject { Car.new } #shorthand, same as above, because so common. subject!{...} 
 it 'allows reading for :wheels' do
     expect(subject.wheels).to eq(4)  #car.wheels is a METHOD call
 end
+
+### Implicitly defined subjects
+Describe can accept either a string or a class name
+
+decribe Car
+    it "...."
+
+#instead of
+
+describe 'car'
+    subject { Car.new }
+
+    it "...."
