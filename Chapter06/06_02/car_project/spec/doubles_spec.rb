@@ -1,3 +1,4 @@
+#Reference for Mocks and Stubs
 describe 'Doubles' do
 
   it "allow stubbing methods" do
