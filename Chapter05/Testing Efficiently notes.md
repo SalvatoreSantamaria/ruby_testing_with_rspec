@@ -60,3 +60,6 @@ describe 'car'
     subject { Car.new }
 
     it "...."
+
+### Shared Examples
+It's a shared file that can be used across different classes
