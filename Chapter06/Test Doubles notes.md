@@ -44,3 +44,9 @@ expect(dbl.hey!).to eq("Ho!")
 #it looks like
 expect(dbl).to receive(:hey!).and_return("Ho!") #this is now an expect statement
 dbl.hey! #call method by itself
+
+### Message Argument Constraints
+This is using .with
+expect(dbl).to receive(:sort).with(any_args) #any_args is the default
+expect(dbl).to receive(:sort).with(name)
+dble.sort('name')
