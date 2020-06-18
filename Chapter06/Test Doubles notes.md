@@ -33,3 +33,14 @@ end
 
 ### Partial Test Doubles
 Adding a method .to receive(:some_non_existant_method).and_return('Something it wouldn't normally return')
+
+### Message Expectations
+Ruby sends 'messages' to objects to call methods. RSpec can set expectations about those messages
+
+#instead of 
+allow(dbl).to receive(:hey!).and_return("Ho!")
+expect(dbl.hey!).to eq("Ho!")
+
+#it looks like
+expect(dbl).to receive(:hey!).and_return("Ho!") #this is now an expect statement
+dbl.hey! #call method by itself
