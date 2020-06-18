@@ -30,3 +30,6 @@ it 'allows setting multiple responses' do
     expect(die.roll).to eq(2)
     expect(die.roll).to eq(6)
 end
+
+### Partial Test Doubles
+Adding a method .to receive(:some_non_existant_method).and_return('Something it wouldn't normally return')
