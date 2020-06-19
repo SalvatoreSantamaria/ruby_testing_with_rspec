@@ -70,17 +70,17 @@ New type of test double, called spies
 
 In a non spy test double, set expectation before we call the method
 
-Non Spy Test Double
+Non Spy Test Double. Set expectation before call the mock object.
 it 'expects a call before it is received' do
     dbl = double('Chant')
     expect(dbl).to receive(:hey!).and_return('Ho!')
     dbl.hey!
 end
 
-Spy Test Double
+Spy Test Double. Set expectation after the request
 it 'expects a call after it is received' do
     dbl = spy('Chant') #spy
-    allow(dbl).to receive(:hey!).and_return('Ho!')
+    allow(dbl).to receive(:hey!).and_return('Ho!') #spy will work with this line crossed out
     dbl.hey!
     expect(dbl).to have_received(:hey!) #have_received
 end
