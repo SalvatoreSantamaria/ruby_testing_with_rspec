@@ -50,3 +50,17 @@ This is using .with
 expect(dbl).to receive(:sort).with(any_args) #any_args is the default
 expect(dbl).to receive(:sort).with(name)
 dble.sort('name')
+
+### Message Count Constraints
+Verifies how many times a method gets called during an example
+
+once
+twice
+exactly(n)
+at_least(:once) at_least(:twice) at_least(n).times
+at_most(:once) at_most(:twice) at_most(n).times
+
+expect(post).to receive(:like).exactly(3).times
+post.like(:user => 'Bob1')
+post.like(:user => 'Bob2')
+post.like(:user => 'Bob3')
