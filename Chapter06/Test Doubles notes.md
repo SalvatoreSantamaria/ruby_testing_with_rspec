@@ -64,3 +64,23 @@ expect(post).to receive(:like).exactly(3).times
 post.like(:user => 'Bob1')
 post.like(:user => 'Bob2')
 post.like(:user => 'Bob3')
+
+### Spies
+New type of test double, called spies
+
+In a non spy test double, set expectation before we call the method
+
+Non Spy Test Double
+it 'expects a call before it is received' do
+    dbl = double('Chant')
+    expect(dbl).to receive(:hey!).and_return('Ho!')
+    dbl.hey!
+end
+
+Spy Test Double
+it 'expects a call after it is received' do
+    dbl = spy('Chant') #spy
+    allow(dbl).to receive(:hey!).and_return('Ho!')
+    dbl.hey!
+    expect(dbl).to have_received(:hey!) #have_received
+end
