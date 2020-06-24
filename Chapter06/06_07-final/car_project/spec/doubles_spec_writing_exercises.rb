@@ -108,7 +108,7 @@ describe 'Doubles' do
       expect(pet.breed).to eq('Great Dane')
 
     end
-#stopped here
+#part 1 stopped here
     xit "allows stubbing class methods on Ruby classes" do
       fixed = Time.new(2010, 1, 1, 12, 0, 0)
       allow(Time).to receive(:now).and_return(fixed)
@@ -116,6 +116,7 @@ describe 'Doubles' do
       expect(Time.now).to eq(fixed)
       expect(Time.now.to_s).to eq('2010-01-01 12:00:00 -0500')
       expect(Time.now.year).to eq(2010)
+
     end
 
     it "allows stubbing database calls a mock object" do
@@ -133,6 +134,19 @@ describe 'Doubles' do
 
     	customer = Customer.find
       expect(customer.name).to eq('Bob')
+    
+      class Customer2
+        attr_accessor :age 
+        def self.find
+        end 
+      end 
+
+      dbl2 = double('MC2')
+      allow(dbl2).to receive(:age).and_return('50')
+      allow(Customer2).to receive(:find).and_return(dbl2)
+      customer2 = Customer2.find
+      expect(customer2.age).to eq('50')
+
     end
 
     it "allows stubbing database calls with many mock objects" do
@@ -160,6 +174,10 @@ describe 'Doubles' do
       dbl = double("Chant")
       expect(dbl).to receive(:hey!).and_return("Ho!")
       dbl.hey!
+
+      dbl2 = double('Shout')
+      expect(dbl2).to receive(:method).and_return('Echo')
+      dbl2.method
     end
     
     it "does not matter which order" do
@@ -170,6 +188,13 @@ describe 'Doubles' do
 
       dbl.step_2
       dbl.step_1
+
+      dbl2 = double('Stuff')
+      expect(dbl2).to receive(:s1)
+      expect(dbl2).to receive(:s2)
+
+      dbl2.s1
+      dbl2.s2
     end
     
     it "works with #ordered when order matters" do
@@ -190,6 +215,10 @@ describe 'Doubles' do
       dbl = double("Customer List")
       expect(dbl).to receive(:sort).with('name')
       dbl.sort('name')
+
+      d = double('Parts List')
+      expect(d).to receive(:sort).with('price')
+      d.sort('price')
     end
 
     it "passes when any arguments are allowed" do
@@ -271,6 +300,11 @@ describe 'Doubles' do
       allow(dbl).to receive(:hey!).and_return("Ho!")
       dbl.hey!
       expect(dbl).to have_received(:hey!)
+
+      d = spy('Shout')
+      allow(d).to receive(:hello).and_return('Echo')
+      d.hello
+      expect(d).to have_received(:hello)
     end
 
     it "can use message constraints" do
@@ -280,6 +314,12 @@ describe 'Doubles' do
       dbl.hey!
       dbl.hey!
       expect(dbl).to have_received(:hey!).with(no_args).exactly(3).times
+
+      d = spy('Shout')
+      allow(d).to receive(:hello).and_return('Echo')
+      d.hello
+      d.hello
+      expect(d).to have_received(:hello).with(no_args).exactly(2).times
     end
     
     it "can expect any message already sent to a declared spy" do
@@ -288,6 +328,10 @@ describe 'Doubles' do
       # allow(customer).to receive(:send_invoice)
       customer.send_invoice
       expect(customer).to have_received(:send_invoice)
+
+      c = spy('Car')
+      c.start_engine
+      expect(c).to have_received(:start_engine)
     end
     
     it "can expect only allowed messages on partial doubles" do
