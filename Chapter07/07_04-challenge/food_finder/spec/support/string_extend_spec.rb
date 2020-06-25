@@ -11,11 +11,11 @@ describe 'String' do
     end
     
     it "capitalizes all uppercase strings" do 
-      expect('ONE'.titleize).to eq('One')
+      expect('ONE TWO'.titleize).to eq('One Two')
     end
     
     it "capitalizes mixed-case strings" do
-      expect('oNe'.titleize).to eq('One')
+      expect('OnE tWO'.titleize).to eq('One Two')
     end
     
   end
@@ -23,29 +23,29 @@ describe 'String' do
   describe '#blank?' do
 
     it "returns true if string is empty" do
-      expect(''.blank?).to eq(true)
+      expect(''.blank?).to be(true)
     end
 
     it "returns true if string contains only spaces" do 
-      expect('  '.blank?).to eq(true)
+      expect(' '.blank?).to be(true)
     end
 
     it "returns true if string contains only tabs" do
     # Get a tab using a double-quoted string with \t
     # example: "\t\t\t"
-      expect("\t\t\t".blank?).to eq(true)  
+      expect("\t\t\t".blank?).to be(true)  
     end
 
     it "returns true if string contains only spaces and tabs" do
-      expect("\t\t\t ".blank?).to eq(true)
+      expect(" \t\t\t ".blank?).to be(true)  
     end
     
     it "returns false if string contains a letter" do
-      expect('a'.blank?).to eq(false)
+      expect("a".blank?).to be(false)
     end
 
     it "returns false if string contains a number" do
-      expect('1'.blank?).to eq(false)
+      expect('1'.blank?).to be(false)
     end
     
   end

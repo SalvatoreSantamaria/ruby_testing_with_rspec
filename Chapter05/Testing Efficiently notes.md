@@ -51,7 +51,7 @@ end
 ### Implicitly defined subjects
 Describe can accept either a string or a class name
 
-decribe Car
+describe Car
     it "...."
 
 #instead of

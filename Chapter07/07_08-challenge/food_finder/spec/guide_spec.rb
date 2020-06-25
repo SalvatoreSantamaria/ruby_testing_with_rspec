@@ -17,19 +17,21 @@ describe Guide do
   describe '#intialize' do
     
     it 'calls Restaurant#load_file with its path argument' do
-      skip('Needs expectation')
+
+      # expect ... 
+      # call restauarant load file with it's path argument
+      expect(Restaurant).to receive(:load_file).with(test_file) #see line 14 of guide.rb
       Guide.new(test_file)
-      # expect ...
     end
     
   end
   
   describe '#launch!' do
     
-    it 'outputs a introductory message' do
-      skip('Needs expectation')
+    it 'outputs an introductory message' do
+
       setup_fake_input('quit')
-      # expect ...
+      expect( subject.launch! ).to output(/Welcome/).to_stdout
     end
     
   end
