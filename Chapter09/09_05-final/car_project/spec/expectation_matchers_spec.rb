@@ -1,3 +1,5 @@
+# Example Notes for Expectation Matchers
+
 describe 'Expectation Matchers' do
   
   describe 'equivalence matchers' do

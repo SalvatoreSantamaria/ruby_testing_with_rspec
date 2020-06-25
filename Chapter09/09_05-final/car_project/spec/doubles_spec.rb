@@ -1,3 +1,5 @@
+#Example Notes for Doubles
+
 describe 'Doubles' do
 
   it "allows stubbing methods" do
